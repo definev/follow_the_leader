@@ -310,7 +310,9 @@ class LeaderLayer extends ContainerLayer {
   //  suggest that ContainerLayer was given an API to serve a specific subclass.
   @override
   void applyTransform(Layer? child, Matrix4 transform) {
-    assert(_lastOffset != null);
+    if (_lastOffset == null) {
+      return;
+    }
     if (_lastOffset != Offset.zero) {
       transform.translate(_lastOffset!.dx, _lastOffset!.dy);
     }
